@@ -3,9 +3,10 @@ import type { Task } from "../types";
 interface TaskListProps {
   tasks: Task[];
   onToggle: (id: string) => void;
+  handleRemove: (id: string) => void;
 }
 
-const TaskList = ({ tasks, onToggle }: TaskListProps) => {
+const TaskList = ({ tasks, onToggle, handleRemove }: TaskListProps) => {
   if (tasks.length === 0) {
     return <p className="text-gray-500 italic">No tasks found.</p>;
   }
@@ -31,7 +32,13 @@ const TaskList = ({ tasks, onToggle }: TaskListProps) => {
             </span>
           </div>
 
-          <button className="ml-auto px-2 py-1 text-xs text-red-100 bg-red-600 rounded hover:bg-red-600 transition">
+          <button
+            className="ml-auto px-2 py-1 text-xs text-red-100 bg-red-600 rounded hover:bg-red-600 transition hover:cursor-pointer"
+            onClick={() => {
+              // call delete functionality
+              handleRemove(task.id);
+            }}
+          >
             Delete
           </button>
         </li>
