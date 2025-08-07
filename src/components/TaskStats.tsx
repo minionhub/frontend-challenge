@@ -11,7 +11,7 @@ const TaskStats = ({ tasks }: TaskStatsProps) => {
   useEffect(() => {
     const count = tasks.filter((t) => t.completed).length;
     setCompleted(count);
-  }, []);
+  }, [tasks]);
 
   const total = tasks.length;
 
